@@ -1,0 +1,24 @@
+<?php
+/**
+ * Implements hook_block_info.
+ */
+function custom_block_info() {
+  $blocks['custom'] = array('info' => t('Custom block'));
+  return $blocks;
+}
+?>
+
+<?php
+/**
+ * Implements hook_block_view.
+ */
+function custom_block_view($delta = '') {
+  global $user;
+  $account = $user;
+  $block['content'] = t('Hello @user',array(
+    '@user' => format_username($user), 
+    '@host' => $account->hostname
+  ));
+  return $block;
+}
+?>
